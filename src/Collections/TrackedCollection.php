@@ -105,6 +105,7 @@ class TrackedCollection implements \ArrayAccess {
    * @param mixed $object
    * @param mixed $state
    */
+  #[\ReturnTypeWillChange]
   public function offsetSet($object, $state) {
 
     switch ($state) {
@@ -136,6 +137,7 @@ class TrackedCollection implements \ArrayAccess {
    *
    * @return bool
    */
+  #[\ReturnTypeWillChange]
   public function offsetExists($object) {
     return isset($this->list[$object->getHash()]);
   }
@@ -146,6 +148,7 @@ class TrackedCollection implements \ArrayAccess {
    *
    * @param mixed $object
    */
+  #[\ReturnTypeWillChange]
   public function offsetUnset($object) {
 
     // If the object exists in the list.
@@ -167,7 +170,8 @@ class TrackedCollection implements \ArrayAccess {
    *
    * @return mixed|null
    */
-  public function offsetGet($object) {
+    #[\ReturnTypeWillChange]
+    public function offsetGet($object) {
     return isset($this->list[$object->getHash()]) ? $this->list[$object->getHash()]['model'] : NULL;
   }
 
